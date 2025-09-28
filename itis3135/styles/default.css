@@ -88,6 +88,7 @@ footer {
     text-align: center;
     margin-top: 40px;
     padding: 20px;
+    clear: both;
 }
 
 footer a {
@@ -100,6 +101,12 @@ footer a {
 footer a:hover {
     color: #2980b9;
     text-decoration: underline;
+}
+
+footer p {
+    margin-top: 15px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .separator {
