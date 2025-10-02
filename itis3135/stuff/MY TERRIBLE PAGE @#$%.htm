@@ -65,6 +65,11 @@
             padding: 10px;
         }
         
+        .poor-contrast {
+            color: #cccccc;
+            background-color: #dddddd;
+        }
+        
         .terrible-border {
             border: 50px solid red;
             border-top: 20px dashed blue;
@@ -124,9 +129,13 @@
         This text has a terrible background color that hurts your eyes!
     </div>
     
+    <div class="poor-contrast">
+        This text has terrible contrast and is hard to read!
+    </div>
+    
     <!-- Terrible image with bad practices -->
     <div style="text-align: center; margin: 50px 0;">
-        <img src="https://live.staticflickr.com/65535/52312345678_abcdef1234567890.jpg" 
+        <img src="https://live.staticflickr.com/65535/52312345678_abcdef1234567890" 
              alt="A really big picture that I found on Google without permission" 
              width="400" 
              height="400" 
@@ -145,6 +154,8 @@
     <div style="margin: 50px 0;">
         <p>I'm using absolute links to my styles instead of relative ones!</p>
         <p>This makes the page break when moved to different servers!</p>
+        <link rel="stylesheet" href="https://avemunoori.github.io/itis3135/styles/default.css">
+        <img src="https://avemunoori.github.io/itis3135/images/profile.png" alt="Absolute link to image">
     </div>
     
     <!-- Terrible border -->
