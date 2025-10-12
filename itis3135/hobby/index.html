@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Climbing Adventures | Aaryan's Hobby Site</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(45deg, #1a252f, #2c3e50);
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(52, 152, 219, 0.1);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 2px solid transparent;
+        }
+
+        nav a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        nav a.active {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            width: 95%;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        /* Section Styles */
+        section {
+            display: none;
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Content Styles */
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            text-align: justify;
+            color: #34495e;
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        /* Figure Styles */
+        figure {
+            text-align: center;
+            margin: 30px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        figure img:hover {
+            transform: scale(1.02);
+        }
+
+        figcaption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .ai-prompt {
+            font-style: italic;
+            color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Form Styles */
+        form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        button {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .design-firm {
+            margin-bottom: 20px;
+        }
+
+        .design-firm a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .design-firm a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        .validation-links {
+            margin-top: 20px;
+        }
+
+        .validation-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid #3498db;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .validation-links a:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 15px auto;
+                width: 98%;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🧗‍♂️ Rock Climbing Adventures</h1>
+        <nav>
+            <a href="#" onclick="showSection('what')" class="nav-link active">What ⛰️</a>
+            <a href="#" onclick="showSection('who')" class="nav-link">Who 🧗‍♀️</a>
+            <a href="#" onclick="showSection('when')" class="nav-link">When 📅</a>
+            <a href="#" onclick="showSection('where')" class="nav-link">Where 🗺️</a>
+            <a href="#" onclick="showSection('how')" class="nav-link">How 🛠️</a>
+            <a href="#" onclick="showSection('why')" class="nav-link">Why ❤️</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- What Section -->
+        <section id="what" class="active">
+            <h2>What is Rock Climbing?</h2>
+            
+            <div class="highlight-box">
+                <h3>🚀 The Ultimate Adventure Sport</h3>
+                <p>Rock climbing is a physically and mentally demanding sport that involves ascending rock formations using specialized techniques and equipment. It combines strength, endurance, problem-solving skills, and mental focus to conquer natural obstacles and reach new heights.</p>
+            </div>
+
+            <p>Rock climbing isn't just about physical strength—it's about mental resilience, strategic thinking, and pushing your limits. Every climb presents unique challenges that require climbers to analyze routes, make split-second decisions, and trust their instincts while suspended hundreds of feet above the ground.</p>
+
+            <figure>
+                <img src="images/climbing-gym.jpg" alt="Modern rock climbing gym with colorful holds" width="600" height="400">
+                <figcaption>Modern indoor climbing gym featuring colorful holds and various difficulty routes</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Create a photorealistic image of a modern indoor rock climbing gym with colorful climbing holds on a textured wall, bright lighting, safety mats on the floor, and climbers in action wearing harnesses and climbing shoes"
+                </div>
+            </figure>
+
+            <p>The sport has evolved significantly over the decades, from traditional outdoor climbing to modern indoor facilities that make the sport accessible year-round. Today's climbing gyms feature sophisticated route-setting systems, safety equipment, and training areas that help climbers develop their skills in a controlled environment before tackling outdoor challenges.</p>
+        </section>
+
+        <!-- Who Section -->
+        <section id="who">
+            <h2>Who Are Rock Climbers?</h2>
+            
+            <p>Rock climbers come from all walks of life, united by their passion for adventure and personal growth. From weekend warriors to professional athletes, the climbing community is incredibly diverse and welcoming. What connects us all is the shared experience of overcoming fears, building confidence, and experiencing the unique perspective that comes from climbing to new heights.</p>
+
+            <div class="highlight-box">
+                <h3>🌟 Community Spirit</h3>
+                <p>The climbing community is known for its supportive nature, environmental consciousness, and commitment to safety. Climbers often form lifelong friendships through shared experiences and mutual support during challenging climbs.</p>
+            </div>
+
+            <figure>
+                <img src="images/climbing-team.jpg" alt="Diverse group of climbers working together" width="600" height="400">
+                <figcaption>Diverse group of climbers working together to solve a challenging route</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Generate a photorealistic image showing a diverse group of 4-5 people of different ages and ethnicities working together on a climbing route, helping each other with safety checks and encouragement, outdoor setting with natural rock face"
+                </div>
+            </figure>
+
+            <p>Many climbers are drawn to the sport because it offers both individual achievement and community connection. Whether you're a beginner learning to trust your equipment or an experienced climber pushing your limits, the climbing community provides mentorship, encouragement, and shared knowledge that helps everyone progress and stay safe.</p>
+        </section>
+
+        <!-- When Section -->
+        <section id="when">
+            <h2>When to Climb?</h2>
+            
+            <p>Timing is crucial in rock climbing, whether you're planning outdoor adventures or indoor training sessions. The best climbing conditions depend on weather, season, and personal schedule. Understanding when to climb can make the difference between an enjoyable experience and a dangerous situation.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Best Conditions</th>
+                        <th>Recommended Locations</th>
+                        <th>Safety Considerations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring</td>
+                        <td>Cool temperatures, good rock conditions</td>
+                        <td>Southern crags, desert areas</td>
+                        <td>Watch for loose rock after winter</td>
+                    </tr>
+                    <tr>
+                        <td>Summer</td>
+                        <td>Long daylight hours, stable weather</td>
+                        <td>High altitude, shaded routes</td>
+                        <td>Stay hydrated, avoid midday heat</td>
+                    </tr>
+                    <tr>
+                        <td>Fall</td>
+                        <td>Optimal temperatures, clear skies</td>
+                        <td>All locations prime</td>
+                        <td>Prepare for shorter days</td>
+                    </tr>
+                    <tr>
+                        <td>Winter</td>
+                        <td>Indoor climbing, ice climbing</td>
+                        <td>Gyms, ice climbing areas</td>
+                        <td>Extreme cold protection needed</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <figure>
+                <img src="images/seasons-climbing.jpg" alt="Climbing in different seasons showing seasonal conditions" width="600" height="400">
+                <figcaption>Climbers enjoying different seasons - from sunny summer days to snowy winter ice climbing</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Create a photorealistic montage showing rock climbing in four different seasons: spring with blooming flowers, summer with bright sunshine, autumn with colorful leaves, and winter with snow and ice climbing gear"
+                </div>
+            </figure>
+
+            <div class="highlight-box">
+                <h3>⏰ Peak Climbing Times</h3>
+                <p>Early morning and late afternoon offer the best outdoor climbing conditions, with optimal temperatures and lighting. Indoor climbing can be enjoyed year-round, with many gyms offering 24/7 access for serious climbers.</p>
+            </div>
+        </section>
+
+        <!-- Where Section -->
+        <section id="where">
+            <h2>Where to Climb?</h2>
+            
+            <p>From local climbing gyms to world-renowned outdoor destinations, climbing opportunities exist everywhere. The choice of location depends on your skill level, available time, and adventure preferences. Each location offers unique challenges and experiences that contribute to your climbing journey.</p>
+
+            <div class="highlight-box">
+                <h3>🏔️ World-Class Destinations</h3>
+                <p>Iconic climbing destinations like Yosemite Valley, Red River Gorge, and Joshua Tree offer legendary routes that have shaped climbing history. These locations provide everything from beginner-friendly routes to extreme challenges that test the world's best climbers.</p>
+            </div>
+
+            <figure>
+                <img src="images/climbing-destinations.jpg" alt="Aerial view of famous climbing destinations" width="600" height="400">
+                <figcaption>Aerial view of famous climbing destinations including granite walls and desert towers</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Generate a photorealistic aerial view of famous rock climbing destinations including Yosemite granite walls, Red River Gorge sandstone cliffs, and Joshua Tree desert towers, showing the dramatic landscapes that make these areas world-renowned"
+                </div>
+            </figure>
+
+            <form>
+                <h3>🗺️ Find Your Next Climbing Destination</h3>
+                <div class="form-group">
+                    <label for="experience">Experience Level:</label>
+                    <select id="experience" name="experience">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="climbing-type">Preferred Climbing Type:</label>
+                    <select id="climbing-type" name="climbing-type">
+                        <option value="sport">Sport Climbing</option>
+                        <option value="trad">Traditional Climbing</option>
+                        <option value="bouldering">Bouldering</option>
+                        <option value="indoor">Indoor Climbing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="travel-distance">Maximum Travel Distance:</label>
+                    <select id="travel-distance" name="travel-distance">
+                        <option value="local">Local (within 1 hour)</option>
+                        <option value="regional">Regional (1-4 hours)</option>
+                        <option value="national">National (4+ hours)</option>
+                        <option value="international">International</option>
+                    </select>
+                </div>
+                <button type="submit">Find Destinations</button>
+            </form>
+
+            <p>Whether you're exploring your local climbing gym or planning an expedition to remote mountain ranges, every location offers unique opportunities for growth and adventure. The key is to start where you're comfortable and gradually expand your horizons as your skills develop.</p>
+        </section>
+
+        <!-- How Section -->
+        <section id="how">
+            <h2>How to Start Climbing?</h2>
+            
+            <p>Getting started in rock climbing requires the right mindset, basic equipment, and proper instruction. While the sport may seem intimidating at first, with the right approach and guidance, anyone can begin their climbing journey safely and enjoyably.</p>
+
+            <div class="highlight-box">
+                <h3>🎒 Essential Equipment for Beginners</h3>
+                <p>Start with the basics: comfortable athletic clothing, climbing shoes, and a chalk bag. Most climbing gyms provide harnesses and helmets for beginners. As you progress, you'll gradually acquire more specialized equipment based on your climbing interests.</p>
+            </div>
+
+            <figure>
+                <img src="images/climbing-equipment.jpg" alt="Complete set of climbing equipment laid out" width="600" height="400">
+                <figcaption>Complete climbing equipment setup including harness, shoes, helmet, ropes, and safety gear</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Create a photorealistic image of climbing equipment neatly arranged: climbing harness, climbing shoes, helmet, chalk bag, carabiners, belay device, climbing rope, and quickdraws, displayed on a clean surface with good lighting"
+                </div>
+            </figure>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th>Purpose</th>
+                        <th>Priority Level</th>
+                        <th>Estimated Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Climbing Shoes</td>
+                        <td>Precision footwork and grip</td>
+                        <td>Essential</td>
+                        <td>$80-200</td>
+                    </tr>
+                    <tr>
+                        <td>Harness</td>
+                        <td>Safety and rope attachment</td>
+                        <td>Essential</td>
+                        <td>$50-150</td>
+                    </tr>
+                    <tr>
+                        <td>Helmet</td>
+                        <td>Head protection</td>
+                        <td>Highly Recommended</td>
+                        <td>$40-120</td>
+                    </tr>
+                    <tr>
+                        <td>Chalk Bag</td>
+                        <td>Hand moisture control</td>
+                        <td>Recommended</td>
+                        <td>$15-40</td>
+                    </tr>
+                    <tr>
+                        <td>Rope & Belay Device</td>
+                        <td>Safety and belaying</td>
+                        <td>Advanced</td>
+                        <td>$150-300</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Learning proper technique is crucial for both safety and enjoyment. Consider taking lessons from certified instructors at your local climbing gym. They can teach you fundamental skills like proper foot placement, body positioning, and basic safety protocols that will serve you throughout your climbing career.</p>
+        </section>
+
+        <!-- Why Section -->
+        <section id="why">
+            <h2>Why Climb?</h2>
+            
+            <p>Rock climbing offers benefits that extend far beyond physical fitness. It's a sport that challenges your mind, builds character, and provides unique experiences that few other activities can match. The reasons people climb are as diverse as the climbers themselves, but certain themes emerge consistently throughout the community.</p>
+
+            <div class="highlight-box">
+                <h3>💪 Physical and Mental Benefits</h3>
+                <p>Climbing develops full-body strength, flexibility, and endurance while improving problem-solving skills, focus, and mental resilience. It's a complete workout that challenges both your body and mind in ways that traditional exercise cannot.</p>
+            </div>
+
+            <figure>
+                <img src="images/climbing-benefits.jpg" alt="Climber reaching the top with sunset background" width="600" height="400">
+                <figcaption>A climber celebrating at the top of a challenging route with a beautiful sunset backdrop</figcaption>
+                <div class="ai-prompt">
+                    <strong>AI Prompt:</strong> "Generate a photorealistic image of a climber reaching the top of a challenging route, arms raised in victory, with a stunning sunset or sunrise in the background, showing the sense of accomplishment and connection with nature"
+                </div>
+            </figure>
+
+            <p>Many climbers find that the sport provides a unique form of meditation and stress relief. The intense focus required during climbing creates a mental state where everyday worries fade away, replaced by the immediate challenge of the route. This mindfulness aspect of climbing has helped countless people manage anxiety, depression, and stress.</p>
+
+            <p>The climbing community itself is another major draw. Unlike many competitive sports, climbing fosters collaboration and mutual support. Whether you're working on a difficult problem or celebrating a friend's success, the community aspect creates lasting friendships and a sense of belonging that extends beyond the climbing walls.</p>
+
+            <div class="highlight-box">
+                <h3>🌍 Connection with Nature</h3>
+                <p>Outdoor climbing provides unparalleled access to some of the world's most beautiful and remote locations. Climbers often develop a deep appreciation for environmental conservation and sustainable practices, becoming advocates for protecting the natural spaces they love.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="design-firm">
+            <p>Page designed by <a href="../vemunooriventures.co/">Vemunoori Ventures</a> | Vemunoori Firm ©2025</p>
+        </div>
+        <div class="validation-links">
+            <a href="https://validator.w3.org/check?uri=referer" target="_blank">HTML Validation</a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" target="_blank">CSS Validation</a>
+            <a href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/avemunoo/itis3135/hobby/" target="_blank">Accessibility Validation</a>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+
+            // Smooth scroll to top of main content
+            document.querySelector('main').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Initialize page with What section active
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('what');
+        });
+    </script>
+</body>
+</html>
