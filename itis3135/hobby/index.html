@@ -30,7 +30,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
-        header h1 {
+        h1 {
             font-size: 2.5em;
             margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -93,7 +93,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        section h2 {
+        h2 {
             color: #2c3e50;
             font-size: 2.2em;
             margin-bottom: 25px;
@@ -120,7 +120,7 @@
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
 
-        .highlight-box h3 {
+        h3 {
             color: #ecf0f1;
             margin-bottom: 15px;
             font-size: 1.4em;
@@ -142,6 +142,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
+            box-sizing: border-box;
         }
 
         figure img:hover {
@@ -221,6 +222,7 @@
             border-radius: 8px;
             font-size: 1em;
             transition: border-color 0.3s ease;
+            box-sizing: border-box;
         }
 
         input:focus, select:focus, textarea:focus {
@@ -314,12 +316,12 @@
     <header>
         <h1>🧗‍♂️ Rock Climbing Adventures</h1>
         <nav>
-            <a href="#" onclick="showSection('what')" class="nav-link active">What ⛰️</a>
-            <a href="#" onclick="showSection('who')" class="nav-link">Who 🧗‍♀️</a>
-            <a href="#" onclick="showSection('when')" class="nav-link">When 📅</a>
-            <a href="#" onclick="showSection('where')" class="nav-link">Where 🗺️</a>
-            <a href="#" onclick="showSection('how')" class="nav-link">How 🛠️</a>
-            <a href="#" onclick="showSection('why')" class="nav-link">Why ❤️</a>
+            <a href="#" onclick="showSection('what', this)" class="nav-link active">What ⛰️</a>
+            <a href="#" onclick="showSection('who', this)" class="nav-link">Who 🧗‍♀️</a>
+            <a href="#" onclick="showSection('when', this)" class="nav-link">When 📅</a>
+            <a href="#" onclick="showSection('where', this)" class="nav-link">Where 🗺️</a>
+            <a href="#" onclick="showSection('how', this)" class="nav-link">How 🛠️</a>
+            <a href="#" onclick="showSection('why', this)" class="nav-link">Why ❤️</a>
         </nav>
     </header>
 
@@ -355,7 +357,7 @@
             </div>
 
             <figure>
-                <img src="images/climbing-team.jpg" alt="Diverse group of climbers working together" width="600" height="400">
+                <img src="images/climbers.png" alt="Diverse group of climbers working together" width="600" height="400">
                 <figcaption>Diverse group of climbers working together to solve a challenging route</figcaption>
             </figure>
 
@@ -406,7 +408,7 @@
             </table>
 
             <figure>
-                <img src="images/seasons-climbing.jpg" alt="Climbing in different seasons showing seasonal conditions" width="600" height="400">
+                <img src="images/sewasons.png" alt="Climbing in different seasons showing seasonal conditions" width="600" height="400">
                 <figcaption>Climbers enjoying different seasons - from sunny summer days to snowy winter ice climbing</figcaption>
             </figure>
 
@@ -428,7 +430,7 @@
             </div>
 
             <figure>
-                <img src="images/climbing-destinations.jpg" alt="Aerial view of famous climbing destinations" width="600" height="400">
+                <img src="images/aerial.png" alt="Aerial view of famous climbing destinations" width="600" height="400">
                 <figcaption>Aerial view of famous climbing destinations including granite walls and desert towers</figcaption>
             </figure>
 
@@ -479,7 +481,7 @@
             </div>
 
             <figure>
-                <img src="images/climbing-equipment.jpg" alt="Complete set of climbing equipment laid out" width="600" height="400">
+                <img src="images/equipment.png" alt="Complete set of climbing equipment laid out" width="600" height="400">
                 <figcaption>Complete climbing equipment setup including harness, shoes, helmet, ropes, and safety gear</figcaption>
             </figure>
 
@@ -541,7 +543,7 @@
             </div>
 
             <figure>
-                <img src="images/climbing-benefits.jpg" alt="Climber reaching the top with sunset background" width="600" height="400">
+                <img src="images/sunsent.png" alt="Climber reaching the top with sunset background" width="600" height="400">
                 <figcaption>A climber celebrating at the top of a challenging route with a beautiful sunset backdrop</figcaption>
             </figure>
 
@@ -568,16 +570,16 @@
     </footer>
 
     <script>
-        function showSection(sectionId) {
+        function showSection(sectionId, clickedElement) {
             // Hide all sections
             const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
+            sections.forEach((section) => {
                 section.classList.remove('active');
             });
 
             // Remove active class from all nav links
             const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
+            navLinks.forEach((link) => {
                 link.classList.remove('active');
             });
 
@@ -585,7 +587,9 @@
             document.getElementById(sectionId).classList.add('active');
 
             // Add active class to clicked nav link
-            event.target.classList.add('active');
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
 
             // Smooth scroll to top of main content
             document.querySelector('main').scrollIntoView({ 
@@ -595,7 +599,7 @@
 
         // Initialize page with What section active
         document.addEventListener('DOMContentLoaded', function() {
-            showSection('what');
+            showSection('what', document.querySelector('.nav-link.active'));
         });
     </script>
 </body>
