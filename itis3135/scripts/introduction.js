@@ -1,80 +1,6 @@
 // Introduction Form JavaScript
 // Handles form validation, submission, and dynamic content generation
 
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('introForm');
-    const resultContainer = document.getElementById('resultContainer');
-    const generatedContent = document.getElementById('generatedContent');
-    
-    // Prevent default form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        handleFormSubmission();
-    });
-    
-    // Set up clear button functionality
-    const clearButton = document.querySelector('button[type="clear"]');
-    if (clearButton) {
-        clearButton.addEventListener('click', clearForm);
-    }
-    
-    // Set up reset button functionality
-    const resetButton = document.querySelector('button[type="reset"]');
-    if (resetButton) {
-        resetButton.addEventListener('click', resetToDefaults);
-    }
-});
-
-// Handle form submission
-function handleFormSubmission() {
-    if (validateForm()) {
-        generateIntroductionPage();
-    }
-}
-
-// Validate required fields
-function validateForm() {
-    const requiredFields = document.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-    
-    // Clear previous error messages
-    document.querySelectorAll('.error-message').forEach((error) => {
-        error.textContent = '';
-    });
-    
-    requiredFields.forEach((field) => {
-        if (!field.value.trim()) {
-            isValid = false;
-            showFieldError(field, 'This field is required');
-        }
-    });
-    
-    // Validate URLs
-    const urlFields = document.querySelectorAll('input[type="url"]');
-    urlFields.forEach((field) => {
-        if (field.value && !isValidUrl(field.value)) {
-            isValid = false;
-            showFieldError(field, 'Please enter a valid URL');
-        }
-    });
-    
-    // Validate date format
-    const dateField = document.getElementById('acknowledgmentDate');
-    if (dateField && dateField.value && !isValidDate(dateField.value)) {
-        isValid = false;
-        showFieldError(dateField, 'Please enter date in YYYY-MM-DD format');
-    }
-    
-    // Validate image file
-    const imageField = document.getElementById('profileImage');
-    if (imageField.files.length === 0) {
-        isValid = false;
-        showFieldError(imageField, 'Please select an image file');
-    }
-    
-    return isValid;
-}
-
 // Show field error message
 function showFieldError(field, message) {
     let errorDiv = field.parentNode.querySelector('.error-message');
@@ -107,68 +33,14 @@ function isValidDate(dateString) {
     return date instanceof Date && !isNaN(date.getTime()) && dateString === date.toISOString().split('T')[0];
 }
 
-// Generate the introduction page content
-function generateIntroductionPage() {
-    const formData = new FormData(document.getElementById('introForm'));
-    
-    // Get all form values
-    const data = {
-        firstName: formData.get('firstName'),
-        middleName: formData.get('middleName'),
-        nickname: formData.get('nickname'),
-        lastName: formData.get('lastName'),
-        acknowledgment: formData.get('acknowledgment'),
-        acknowledgmentDate: formData.get('acknowledgmentDate'),
-        mascotAdjective: formData.get('mascotAdjective'),
-        mascotAnimal: formData.get('mascotAnimal'),
-        divider: formData.get('divider'),
-        imageCaption: formData.get('imageCaption'),
-        personalStatement: formData.get('personalStatement'),
-        personalBackground: formData.get('personalBackground'),
-        professionalBackground: formData.get('professionalBackground'),
-        academicBackground: formData.get('academicBackground'),
-        courseBackground: formData.get('courseBackground'),
-        computerPlatform: formData.get('computerPlatform'),
-        currentCourses: formData.get('currentCourses'),
-        funnyStory: formData.get('funnyStory'),
-        quote: formData.get('quote'),
-        quoteAuthor: formData.get('quoteAuthor'),
-        funnyThing: formData.get('funnyThing'),
-        somethingToShare: formData.get('somethingToShare'),
-        linkedin: formData.get('linkedin'),
-        github: formData.get('github'),
-        unccWeb: formData.get('unccWeb'),
-        githubIo: formData.get('githubIo'),
-        freeCodeCamp: formData.get('freeCodeCamp')
-    };
-    
-    // Get courses data
-    const courses = [];
-    const courseDepts = formData.getAll('courseDept[]');
-    const courseNumbers = formData.getAll('courseNumber[]');
-    const courseNames = formData.getAll('courseName[]');
-    const courseReasons = formData.getAll('courseReason[]');
-    
-    for (let i = 0; i < courseDepts.length; i++) {
-        if (courseDepts[i] && courseNumbers[i] && courseNames[i] && courseReasons[i]) {
-            courses.push({
-                dept: courseDepts[i],
-                number: courseNumbers[i],
-                name: courseNames[i],
-                reason: courseReasons[i]
-            });
-        }
-    }
-    
-    // Generate HTML content
-    const htmlContent = generateIntroductionHTML(data, courses);
-    
-    // Display the generated content
-    generatedContent.innerHTML = htmlContent;
-    resultContainer.style.display = 'block';
-    
-    // Scroll to result
-    resultContainer.scrollIntoView({ behavior: 'smooth' });
+// Format date for display
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
 }
 
 // Generate the HTML content for the introduction page
@@ -240,34 +112,120 @@ function generateIntroductionHTML(data, courses) {
     `;
 }
 
-// Format date for display
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+// Validate required fields
+function validateForm() {
+    const requiredFields = document.querySelectorAll('input[required], textarea[required]');
+    let isValid = true;
+    
+    // Clear previous error messages
+    document.querySelectorAll('.error-message').forEach((error) => {
+        error.textContent = '';
     });
+    
+    requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+            isValid = false;
+            showFieldError(field, 'This field is required');
+        }
+    });
+    
+    // Validate URLs
+    const urlFields = document.querySelectorAll('input[type="url"]');
+    urlFields.forEach((field) => {
+        if (field.value && !isValidUrl(field.value)) {
+            isValid = false;
+            showFieldError(field, 'Please enter a valid URL');
+        }
+    });
+    
+    // Validate date format
+    const dateField = document.getElementById('acknowledgmentDate');
+    if (dateField && dateField.value && !isValidDate(dateField.value)) {
+        isValid = false;
+        showFieldError(dateField, 'Please enter date in YYYY-MM-DD format');
+    }
+    
+    // Validate image file
+    const imageField = document.getElementById('profileImage');
+    if (imageField.files.length === 0) {
+        isValid = false;
+        showFieldError(imageField, 'Please select an image file');
+    }
+    
+    return isValid;
 }
 
-// Add a new course row
-function addCourse() {
-    const container = document.getElementById('coursesContainer');
-    const courseItem = document.createElement('div');
-    courseItem.className = 'course-item';
-    courseItem.innerHTML = `
-        <input type="text" name="courseDept[]" placeholder="Department" required>
-        <input type="text" name="courseNumber[]" placeholder="Number" required>
-        <input type="text" name="courseName[]" placeholder="Course Name" required>
-        <input type="text" name="courseReason[]" placeholder="Reason" required>
-        <button type="button" class="delete-course" onclick="removeCourse(this)">Delete</button>
-    `;
-    container.appendChild(courseItem);
+// Generate the introduction page content
+function generateIntroductionPage() {
+    const formData = new FormData(document.getElementById('introForm'));
+    
+    // Get all form values
+    const data = {
+        firstName: formData.get('firstName'),
+        middleName: formData.get('middleName'),
+        nickname: formData.get('nickname'),
+        lastName: formData.get('lastName'),
+        acknowledgment: formData.get('acknowledgment'),
+        acknowledgmentDate: formData.get('acknowledgmentDate'),
+        mascotAdjective: formData.get('mascotAdjective'),
+        mascotAnimal: formData.get('mascotAnimal'),
+        divider: formData.get('divider'),
+        imageCaption: formData.get('imageCaption'),
+        personalStatement: formData.get('personalStatement'),
+        personalBackground: formData.get('personalBackground'),
+        professionalBackground: formData.get('professionalBackground'),
+        academicBackground: formData.get('academicBackground'),
+        courseBackground: formData.get('courseBackground'),
+        computerPlatform: formData.get('computerPlatform'),
+        currentCourses: formData.get('currentCourses'),
+        funnyStory: formData.get('funnyStory'),
+        quote: formData.get('quote'),
+        quoteAuthor: formData.get('quoteAuthor'),
+        funnyThing: formData.get('funnyThing'),
+        somethingToShare: formData.get('somethingToShare'),
+        linkedin: formData.get('linkedin'),
+        github: formData.get('github'),
+        unccWeb: formData.get('unccWeb'),
+        githubIo: formData.get('githubIo'),
+        freeCodeCamp: formData.get('freeCodeCamp')
+    };
+    
+    // Get courses data
+    const courses = [];
+    const courseDepts = formData.getAll('courseDept[]');
+    const courseNumbers = formData.getAll('courseNumber[]');
+    const courseNames = formData.getAll('courseName[]');
+    const courseReasons = formData.getAll('courseReason[]');
+    
+    for (let i = 0; i < courseDepts.length; i++) {
+        if (courseDepts[i] && courseNumbers[i] && courseNames[i] && courseReasons[i]) {
+            courses.push({
+                dept: courseDepts[i],
+                number: courseNumbers[i],
+                name: courseNames[i],
+                reason: courseReasons[i]
+            });
+        }
+    }
+    
+    // Generate HTML content
+    const htmlContent = generateIntroductionHTML(data, courses);
+    
+    // Display the generated content
+    const generatedContent = document.getElementById('generatedContent');
+    const resultContainer = document.getElementById('resultContainer');
+    generatedContent.innerHTML = htmlContent;
+    resultContainer.style.display = 'block';
+    
+    // Scroll to result
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Remove a course row
-function removeCourse(button) {
-    button.parentElement.remove();
+// Handle form submission
+function handleFormSubmission() {
+    if (validateForm()) {
+        generateIntroductionPage();
+    }
 }
 
 // Clear all form fields
@@ -313,8 +271,51 @@ function resetForm() {
     document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Handle image preview and validation
+// Add a new course row
+function addCourse() {
+    const container = document.getElementById('coursesContainer');
+    const courseItem = document.createElement('div');
+    courseItem.className = 'course-item';
+    courseItem.innerHTML = `
+        <input type="text" name="courseDept[]" placeholder="Department" required>
+        <input type="text" name="courseNumber[]" placeholder="Number" required>
+        <input type="text" name="courseName[]" placeholder="Course Name" required>
+        <input type="text" name="courseReason[]" placeholder="Reason" required>
+        <button type="button" class="delete-course" onclick="removeCourse(this)">Delete</button>
+    `;
+    container.appendChild(courseItem);
+}
+
+// Remove a course row
+function removeCourse(button) {
+    button.parentElement.remove();
+}
+
+// Initialize the form when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('introForm');
+    const resultContainer = document.getElementById('resultContainer');
+    const generatedContent = document.getElementById('generatedContent');
+    
+    // Prevent default form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleFormSubmission();
+    });
+    
+    // Set up clear button functionality
+    const clearButton = document.querySelector('button[type="clear"]');
+    if (clearButton) {
+        clearButton.addEventListener('click', clearForm);
+    }
+    
+    // Set up reset button functionality
+    const resetButton = document.querySelector('button[type="reset"]');
+    if (resetButton) {
+        resetButton.addEventListener('click', resetToDefaults);
+    }
+    
+    // Handle image preview and validation
     const imageInput = document.getElementById('profileImage');
     if (imageInput) {
         imageInput.addEventListener('change', function(e) {
