@@ -8,7 +8,9 @@
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
     <style>
         /* Reset and base styles */
-        * {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
         }
         
@@ -165,29 +167,6 @@
             background: #c0392b;
         }
 
-        .result-container {
-            display: none;
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #27ae60;
-        }
-
-        .reset-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .reset-link a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .reset-link a:hover {
-            text-decoration: underline;
-        }
 
         .error-message {
             color: #e74c3c;
@@ -424,13 +403,6 @@
                 </div>
             </form>
 
-            <!-- Result Container -->
-            <div id="resultContainer" class="result-container">
-                <div id="generatedContent"></div>
-                <div class="reset-link">
-                    <a href="#" onclick="resetForm()">Reset Form</a>
-                </div>
-            </div>
         </div>
     </main>
     

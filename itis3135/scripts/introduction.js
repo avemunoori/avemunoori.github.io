@@ -43,7 +43,96 @@ function formatDate(dateString) {
     });
 }
 
-// Generate the HTML content for the introduction page
+// Generate a complete HTML page
+function generateCompleteHTMLPage(data, courses, imageSrc = 'images/profile.png') {
+    const fullName = `${data.firstName} ${data.middleName ? data.middleName + ' ' : ''}${data.lastName}`;
+    const displayName = data.nickname || data.firstName;
+    
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${fullName} | ITIS 3135 | Introduction Form</title>
+    <link rel="stylesheet" href="styles/default.css">
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div data-include-html="components/header.html"></div>
+    
+    <main>
+        <h2>Introduction Form</h2>
+        
+        <p><strong>Name:</strong> ${fullName}</p>
+        <p><strong>Preferred Name:</strong> ${displayName}</p>
+        
+        <h3>Acknowledgment</h3>
+        <p>${data.acknowledgment}</p>
+        <p><strong>Date:</strong> ${formatDate(data.acknowledgmentDate)}</p>
+        
+        <h3>Mascot</h3>
+        <p><strong>${data.mascotAdjective} ${data.mascotAnimal}</strong></p>
+        <p><strong>Divider:</strong> ${data.divider}</p>
+        
+        <h3>Profile Picture</h3>
+        <figure>
+            <img src="${imageSrc}" alt="${data.imageCaption}" style="max-width: 300px; height: auto;">
+            <figcaption>${data.imageCaption}</figcaption>
+        </figure>
+        
+        <h3>Personal Statement</h3>
+        <p>${data.personalStatement}</p>
+        
+        <h3>Background Information</h3>
+        <ul>
+            <li><strong>Personal Background:</strong> ${data.personalBackground}</li>
+            <li><strong>Professional Background:</strong> ${data.professionalBackground}</li>
+            <li><strong>Academic Background:</strong> ${data.academicBackground}</li>
+            <li><strong>Background in this Course:</strong> ${data.courseBackground}</li>
+            <li><strong>Primary Computer Platform:</strong> ${data.computerPlatform}</li>
+            <li><strong>Courses I'm Taking:</strong> ${data.currentCourses}</li>
+            <li><strong>Funny/Interesting Story:</strong> ${data.funnyStory}</li>
+        </ul>
+        
+        <h3>Current Courses</h3>
+        <ul>
+            ${courses.map((course) => 
+                `<li><strong>${course.dept} ${course.number} - ${course.name}:</strong> ${course.reason}</li>`
+            ).join('')}
+        </ul>
+        
+        <h3>Quote</h3>
+        <blockquote>
+            <p>"${data.quote}"</p>
+            <footer>- ${data.quoteAuthor}</footer>
+        </blockquote>
+        
+        ${data.funnyThing ? `<h3>Funny Thing</h3><p>${data.funnyThing}</p>` : ''}
+        
+        ${data.somethingToShare ? `<h3>Something I Would Like to Share</h3><p>${data.somethingToShare}</p>` : ''}
+        
+        <h3>Links</h3>
+        <ul>
+            <li><a href="${data.linkedin}" target="_blank">LinkedIn</a></li>
+            <li><a href="${data.github}" target="_blank">GitHub</a></li>
+            <li><a href="${data.unccWeb}" target="_blank">UNCC Web</a></li>
+            <li><a href="${data.githubIo}" target="_blank">GitHub.io</a></li>
+            <li><a href="${data.freeCodeCamp}" target="_blank">FreeCodeCamp</a></li>
+        </ul>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="intro_form.html" style="color: #3498db; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 2px solid #3498db; border-radius: 5px; display: inline-block;">Fill out another form</a>
+        </div>
+    </main>
+    
+    <div data-include-html="components/footer.html"></div>
+    <script src="scripts/HTMLInclude.js"></script>
+    <script>includeHTML();</script>
+</body>
+</html>`;
+}
+
+// Generate the HTML content for the introduction page (kept for compatibility)
 function generateIntroductionHTML(data, courses) {
     const fullName = `${data.firstName} ${data.middleName ? data.middleName + ' ' : ''}${data.lastName}`;
     const displayName = data.nickname || data.firstName;
@@ -208,17 +297,30 @@ function generateIntroductionPage() {
         }
     }
     
-    // Generate HTML content
-    const htmlContent = generateIntroductionHTML(data, courses);
-    
-    // Display the generated content
-    const generatedContent = document.getElementById('generatedContent');
-    const resultContainer = document.getElementById('resultContainer');
-    generatedContent.innerHTML = htmlContent;
-    resultContainer.style.display = 'block';
-    
-    // Scroll to result
-    resultContainer.scrollIntoView({ behavior: 'smooth' });
+    // Handle image upload if present
+    const imageInput = document.getElementById('profileImage');
+    if (imageInput && imageInput.files.length > 0) {
+        const file = imageInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Generate complete HTML page with the image data
+            const completeHTML = generateCompleteHTMLPage(data, courses, e.target.result);
+            
+            // Create a new window/tab with the generated page
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(completeHTML);
+            newWindow.document.close();
+        };
+        reader.readAsDataURL(file);
+    } else {
+        // Generate complete HTML page without custom image
+        const completeHTML = generateCompleteHTMLPage(data, courses, 'images/profile.png');
+        
+        // Create a new window/tab with the generated page
+        const newWindow = window.open('', '_blank');
+        newWindow.document.write(completeHTML);
+        newWindow.document.close();
+    }
 }
 
 // Handle form submission
@@ -248,15 +350,12 @@ function clearForm() {
         error.textContent = '';
     });
     
-    // Hide result container
-    document.getElementById('resultContainer').style.display = 'none';
+    // No result container to hide anymore
 }
 
 // Reset form to default values
 function resetToDefaults() {
     // This will be handled by the browser's default reset functionality
-    // We just need to hide the result container
-    document.getElementById('resultContainer').style.display = 'none';
     
     // Clear error messages
     document.querySelectorAll('.error-message').forEach((error) => {
@@ -264,11 +363,9 @@ function resetToDefaults() {
     });
 }
 
-// Reset form (called from result page)
+// Reset form (no longer needed since we open new page)
 function resetForm() {
     clearForm();
-    document.getElementById('resultContainer').style.display = 'none';
-    document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Add a new course row
@@ -294,8 +391,6 @@ function removeCourse(button) {
 // Initialize the form when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('introForm');
-    const resultContainer = document.getElementById('resultContainer');
-    const generatedContent = document.getElementById('generatedContent');
     
     // Prevent default form submission
     form.addEventListener('submit', function(e) {
