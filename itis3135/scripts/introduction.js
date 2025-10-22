@@ -58,6 +58,13 @@ function validateForm() {
         }
     });
     
+    // Validate date format
+    const dateField = document.getElementById('acknowledgmentDate');
+    if (dateField && dateField.value && !isValidDate(dateField.value)) {
+        isValid = false;
+        showFieldError(dateField, 'Please enter date in YYYY-MM-DD format');
+    }
+    
     // Validate image file
     const imageField = document.getElementById('profileImage');
     if (imageField.files.length === 0) {
@@ -87,6 +94,17 @@ function isValidUrl(string) {
     } catch (_) {
         return false;
     }
+}
+
+// Validate date format (YYYY-MM-DD)
+function isValidDate(dateString) {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(dateString)) {
+        return false;
+    }
+    
+    const date = new Date(dateString);
+    return date instanceof Date && !isNaN(date) && dateString === date.toISOString().split('T')[0];
 }
 
 // Generate the introduction page content

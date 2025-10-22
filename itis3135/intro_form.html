@@ -195,7 +195,7 @@
     </style>
 </head>
 <body>
-    <div include-html="components/header.html"></div>
+    <div data-include-html="components/header.html"></div>
     
     <main>
         <h2>Introduction Form</h2>
@@ -243,8 +243,8 @@
                     </div>
                     <div class="form-group">
                         <label for="acknowledgmentDate">Acknowledgment Date <span class="required">*</span></label>
-                        <input type="date" id="acknowledgmentDate" name="acknowledgmentDate" required 
-                               value="2024-09-28">
+                        <input type="text" id="acknowledgmentDate" name="acknowledgmentDate" required 
+                               value="2024-09-28" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}">
                     </div>
                 </div>
 
@@ -428,7 +428,7 @@
         </div>
     </main>
     
-    <div include-html="components/footer.html"></div>
+    <div data-include-html="components/footer.html"></div>
     <script src="scripts/HTMLInclude.js"></script>
     <script src="scripts/introduction.js"></script>
     <script>includeHTML();</script>
