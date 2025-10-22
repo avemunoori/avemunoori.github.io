@@ -38,11 +38,11 @@ function validateForm() {
     let isValid = true;
     
     // Clear previous error messages
-    document.querySelectorAll('.error-message').forEach(error => {
+    document.querySelectorAll('.error-message').forEach((error) => {
         error.textContent = '';
     });
     
-    requiredFields.forEach(field => {
+    requiredFields.forEach((field) => {
         if (!field.value.trim()) {
             isValid = false;
             showFieldError(field, 'This field is required');
@@ -51,7 +51,7 @@ function validateForm() {
     
     // Validate URLs
     const urlFields = document.querySelectorAll('input[type="url"]');
-    urlFields.forEach(field => {
+    urlFields.forEach((field) => {
         if (field.value && !isValidUrl(field.value)) {
             isValid = false;
             showFieldError(field, 'Please enter a valid URL');
@@ -91,7 +91,7 @@ function isValidUrl(string) {
     try {
         new URL(string);
         return true;
-    } catch (_) {
+    } catch (error) {
         return false;
     }
 }
@@ -104,7 +104,7 @@ function isValidDate(dateString) {
     }
     
     const date = new Date(dateString);
-    return date instanceof Date && !isNaN(date) && dateString === date.toISOString().split('T')[0];
+    return date instanceof Date && !isNaN(date.getTime()) && dateString === date.toISOString().split('T')[0];
 }
 
 // Generate the introduction page content
@@ -213,7 +213,7 @@ function generateIntroductionHTML(data, courses) {
             
             <h3>Current Courses</h3>
             <ul>
-                ${courses.map(course => 
+                ${courses.map((course) => 
                     `<li><strong>${course.dept} ${course.number} - ${course.name}:</strong> ${course.reason}</li>`
                 ).join('')}
             </ul>
@@ -275,7 +275,7 @@ function clearForm() {
     const form = document.getElementById('introForm');
     const inputs = form.querySelectorAll('input, textarea, select');
     
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
         if (input.type === 'file') {
             input.value = '';
         } else if (input.type === 'checkbox' || input.type === 'radio') {
@@ -286,7 +286,7 @@ function clearForm() {
     });
     
     // Clear error messages
-    document.querySelectorAll('.error-message').forEach(error => {
+    document.querySelectorAll('.error-message').forEach((error) => {
         error.textContent = '';
     });
     
@@ -301,7 +301,7 @@ function resetToDefaults() {
     document.getElementById('resultContainer').style.display = 'none';
     
     // Clear error messages
-    document.querySelectorAll('.error-message').forEach(error => {
+    document.querySelectorAll('.error-message').forEach((error) => {
         error.textContent = '';
     });
 }
