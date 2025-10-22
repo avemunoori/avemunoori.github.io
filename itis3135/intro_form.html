@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaryan Vemunoori | ITIS 3135 | Introduction Form</title>
+    <link rel="stylesheet" href="styles/default.css">
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .form-section h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .course-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .course-item input {
+            flex: 1;
+        }
+
+        .delete-course {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .delete-course:hover {
+            background: #c0392b;
+        }
+
+        .add-course {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .add-course:hover {
+            background: #229954;
+        }
+
+        .control-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .control-buttons button {
+            margin: 0 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+
+        .reset-btn {
+            background: #f39c12;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background: #e67e22;
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background: #c0392b;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .reset-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .reset-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .reset-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div include-html="components/header.html"></div>
+    
+    <main>
+        <h2>Introduction Form</h2>
+        
+        <div class="form-container">
+            <h3>Please submit the form below.</h3>
+            
+            <form id="introForm">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <h4>Personal Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required 
+                                   value="Aaryan" placeholder="Enter your first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name/Initial</label>
+                            <input type="text" id="middleName" name="middleName" 
+                                   placeholder="Enter your middle name or initial">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nickname">Nickname/Preferred Name</label>
+                            <input type="text" id="nickname" name="nickname" 
+                                   placeholder="Enter your nickname or preferred name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required 
+                                   value="Vemunoori" placeholder="Enter your last name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acknowledgment Section -->
+                <div class="form-section">
+                    <h4>Acknowledgment</h4>
+                    <div class="form-group">
+                        <label for="acknowledgment">Acknowledgment Statement <span class="required">*</span></label>
+                        <textarea id="acknowledgment" name="acknowledgment" rows="3" required 
+                                  placeholder="Enter your acknowledgment statement">I, Aaryan Vemunoori agree to abide by the terms of the course contract in my Fall 2024, ITIS 3135, Web-Based Application Design and Development with my instructor, Professor D.I. von Briesen. I understand that all work that I do on publicly available online tools will be available to the world, and will not put information there that is inappropriate for schoolwork, or that I wish to keep private. I also understand that it is my work that counts for attendance, not logins or showing up for class. As such, failure to turn in assignments may show as absences. I also understand that given the structure and content of this class it's possible to find many examples online or even view my classmates' code directly. I swear that I will only use these resources to learn, and will not cut and paste code except where I have properly given credit (i.e. external libraries) and never from my classmates.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="acknowledgmentDate">Acknowledgment Date <span class="required">*</span></label>
+                        <input type="date" id="acknowledgmentDate" name="acknowledgmentDate" required 
+                               value="2024-09-28">
+                    </div>
+                </div>
+
+                <!-- Mascot Section -->
+                <div class="form-section">
+                    <h4>Mascot Information</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mascotAdjective">Mascot Adjective <span class="required">*</span></label>
+                            <input type="text" id="mascotAdjective" name="mascotAdjective" required 
+                                   value="Adamant" placeholder="Enter mascot adjective">
+                        </div>
+                        <div class="form-group">
+                            <label for="mascotAnimal">Mascot Animal <span class="required">*</span></label>
+                            <input type="text" id="mascotAnimal" name="mascotAnimal" required 
+                                   value="Vulture" placeholder="Enter mascot animal">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="divider">Divider Symbol <span class="required">*</span></label>
+                        <input type="text" id="divider" name="divider" required 
+                               value="~" placeholder="Enter divider symbol (e.g., ~, |, ♥️)">
+                    </div>
+                </div>
+
+                <!-- Picture Section -->
+                <div class="form-section">
+                    <h4>Profile Picture</h4>
+                    <div class="form-group">
+                        <label for="profileImage">Profile Picture <span class="required">*</span></label>
+                        <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
+                        <div class="error-message" id="imageError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageCaption">Picture Caption <span class="required">*</span></label>
+                        <input type="text" id="imageCaption" name="imageCaption" required 
+                               value="Aaryan Vemunoori Profile Picture" placeholder="Enter picture caption">
+                    </div>
+                </div>
+
+                <!-- Personal Statement Section -->
+                <div class="form-section">
+                    <h4>Personal Statement</h4>
+                    <div class="form-group">
+                        <label for="personalStatement">Personal Statement <span class="required">*</span></label>
+                        <textarea id="personalStatement" name="personalStatement" rows="4" required 
+                                  placeholder="Enter your personal statement">I'm a passionate computer science student with a diverse range of interests and experiences. When I'm not coding, you'll often find me scaling rock walls or playing piano, as I believe in maintaining a well-rounded lifestyle that balances technical skills with creative and physical pursuits. I enjoy the challenge of problem-solving both in programming and in climbing, where each route presents a unique puzzle to solve.</textarea>
+                    </div>
+                </div>
+
+                <!-- Background Bullets Section -->
+                <div class="form-section">
+                    <h4>Background Information</h4>
+                    <div class="form-group">
+                        <label for="personalBackground">Personal Background <span class="required">*</span></label>
+                        <textarea id="personalBackground" name="personalBackground" rows="3" required 
+                                  placeholder="Enter your personal background">I'm a passionate computer science student with a diverse range of interests and experiences. When I'm not coding, you'll often find me scaling rock walls or playing piano, as I believe in maintaining a well-rounded lifestyle that balances technical skills with creative and physical pursuits. I enjoy the challenge of problem-solving both in programming and in climbing, where each route presents a unique puzzle to solve.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="professionalBackground">Professional Background <span class="required">*</span></label>
+                        <textarea id="professionalBackground" name="professionalBackground" rows="3" required 
+                                  placeholder="Enter your professional background">My journey in computer science has been enriched by completing two valuable internships that have given me real-world experience in software development and problem-solving. These experiences have deepened my passion for technology and reinforced my commitment to pursuing a career in computer science. I've worked on various projects involving web development, data analysis, and software engineering, which has given me a solid foundation in both frontend and backend technologies.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="academicBackground">Academic Background <span class="required">*</span></label>
+                        <textarea id="academicBackground" name="academicBackground" rows="3" required 
+                                  placeholder="Enter your academic background">I'm currently pursuing my degree in Computer Science at UNC Charlotte, where I've been able to explore various aspects of the field including data structures, algorithms, software engineering, and web development. My coursework has provided me with a strong theoretical foundation while my internships have given me practical experience in applying these concepts to real-world problems.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseBackground">Background in this Course <span class="required">*</span></label>
+                        <textarea id="courseBackground" name="courseBackground" rows="3" required 
+                                  placeholder="Enter your background in this course">This is my first formal course focused specifically on web-based application design and development. While I have some experience with HTML, CSS, and JavaScript from personal projects and internships, I'm excited to learn the proper methodologies, best practices, and modern frameworks that will help me become a more effective web developer. I'm particularly interested in learning about responsive design, accessibility, and the latest web technologies.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="computerPlatform">Primary Computer Platform <span class="required">*</span></label>
+                        <textarea id="computerPlatform" name="computerPlatform" rows="2" required 
+                                  placeholder="Enter your primary computer platform">I primarily work on macOS, using a MacBook Pro for development. I'm comfortable with both command-line tools and various IDEs, and I enjoy the flexibility that comes with Unix-based systems for development work.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentCourses">Courses I'm Taking <span class="required">*</span></label>
+                        <textarea id="currentCourses" name="currentCourses" rows="2" required 
+                                  placeholder="Enter your current courses">This semester, I'm taking ITIS 3135 (Web-Based Application Design and Development), along with other computer science courses that focus on algorithms, data structures, and software engineering principles. I'm also taking some general education courses to round out my academic experience.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="funnyStory">Funny/Interesting Story <span class="required">*</span></label>
+                        <textarea id="funnyStory" name="funnyStory" rows="3" required 
+                                  placeholder="Enter your funny or interesting story">During one of my internships, I spent an entire day debugging what I thought was a complex algorithm issue, only to discover that the problem was a simple typo in a variable name. The variable was named "userNmae" instead of "userName" - that missing 'a' caused hours of confusion! It was a humbling reminder that sometimes the simplest mistakes can be the most time-consuming to find, and it taught me the importance of careful code review and consistent naming conventions.</textarea>
+                    </div>
+                </div>
+
+                <!-- Courses Section -->
+                <div class="form-section">
+                    <h4>Current Courses</h4>
+                    <button type="button" class="add-course" onclick="addCourse()">Add Course</button>
+                    <div id="coursesContainer">
+                        <div class="course-item">
+                            <input type="text" name="courseDept[]" placeholder="Department" value="ITIS" required>
+                            <input type="text" name="courseNumber[]" placeholder="Number" value="3135" required>
+                            <input type="text" name="courseName[]" placeholder="Course Name" value="Web-Based Application Design and Development" required>
+                            <input type="text" name="courseReason[]" placeholder="Reason" value="Learning web development" required>
+                            <button type="button" class="delete-course" onclick="removeCourse(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote Section -->
+                <div class="form-section">
+                    <h4>Quote</h4>
+                    <div class="form-group">
+                        <label for="quote">Quote <span class="required">*</span></label>
+                        <textarea id="quote" name="quote" rows="3" required 
+                                  placeholder="Enter your favorite quote">"The best way to predict the future is to create it."</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteAuthor">Quote Author <span class="required">*</span></label>
+                        <input type="text" id="quoteAuthor" name="quoteAuthor" required 
+                               value="Peter Drucker" placeholder="Enter quote author">
+                    </div>
+                </div>
+
+                <!-- Optional Information -->
+                <div class="form-section">
+                    <h4>Additional Information (Optional)</h4>
+                    <div class="form-group">
+                        <label for="funnyThing">Funny Thing</label>
+                        <textarea id="funnyThing" name="funnyThing" rows="2" 
+                                  placeholder="Enter something funny about yourself"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="somethingToShare">Something I Would Like to Share</label>
+                        <textarea id="somethingToShare" name="somethingToShare" rows="2" 
+                                  placeholder="Enter something you'd like to share">I'm really excited about the intersection of technology and outdoor activities. I've been working on a personal project to create a web application that helps climbers track their progress and find new routes. It combines my love for coding with my passion for climbing, and I'm hoping to learn new techniques in this course that will help me make it even better!</textarea>
+                    </div>
+                </div>
+
+                <!-- Links Section -->
+                <div class="form-section">
+                    <h4>Links</h4>
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn <span class="required">*</span></label>
+                        <input type="url" id="linkedin" name="linkedin" required 
+                               value="https://www.linkedin.com/in/aaryan-vemunoori-89394a211/" placeholder="Enter LinkedIn URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="github">GitHub <span class="required">*</span></label>
+                        <input type="url" id="github" name="github" required 
+                               value="https://github.com/avemunoori" placeholder="Enter GitHub URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="unccWeb">UNCC Web <span class="required">*</span></label>
+                        <input type="url" id="unccWeb" name="unccWeb" required 
+                               value="http://webpages.charlotte.edu/avemunoo/" placeholder="Enter UNCC Web URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="githubIo">GitHub.io <span class="required">*</span></label>
+                        <input type="url" id="githubIo" name="githubIo" required 
+                               value="https://avemunoori.github.io/" placeholder="Enter GitHub.io URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="freeCodeCamp">FreeCodeCamp <span class="required">*</span></label>
+                        <input type="url" id="freeCodeCamp" name="freeCodeCamp" required 
+                               value="https://www.freecodecamp.org/avemunoori" placeholder="Enter FreeCodeCamp URL">
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <button type="submit" class="submit-btn">Submit</button>
+                    <button type="reset" class="reset-btn">Reset</button>
+                    <button type="button" class="clear-btn" onclick="clearForm()">Clear</button>
+                </div>
+            </form>
+
+            <!-- Result Container -->
+            <div id="resultContainer" class="result-container">
+                <div id="generatedContent"></div>
+                <div class="reset-link">
+                    <a href="#" onclick="resetForm()">Reset Form</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div include-html="components/footer.html"></div>
+    <script src="scripts/HTMLInclude.js"></script>
+    <script src="scripts/introduction.js"></script>
+    <script>includeHTML();</script>
+</body>
+</html>
