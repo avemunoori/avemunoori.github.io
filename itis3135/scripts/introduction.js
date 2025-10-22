@@ -30,7 +30,7 @@ function handleFormSubmission() {
     if (validateForm()) {
         generateIntroductionPage();
     }
-};
+}
 
 // Validate required fields
 function validateForm() {
@@ -73,7 +73,7 @@ function validateForm() {
     }
     
     return isValid;
-};
+}
 
 // Show field error message
 function showFieldError(field, message) {
@@ -84,7 +84,7 @@ function showFieldError(field, message) {
         field.parentNode.appendChild(errorDiv);
     }
     errorDiv.textContent = message;
-};
+}
 
 // Validate URL format
 function isValidUrl(string) {
@@ -94,7 +94,7 @@ function isValidUrl(string) {
     } catch (error) {
         return false;
     }
-};
+}
 
 // Validate date format (YYYY-MM-DD)
 function isValidDate(dateString) {
@@ -105,7 +105,7 @@ function isValidDate(dateString) {
     
     const date = new Date(dateString);
     return date instanceof Date && !isNaN(date.getTime()) && dateString === date.toISOString().split('T')[0];
-};
+}
 
 // Generate the introduction page content
 function generateIntroductionPage() {
@@ -169,7 +169,7 @@ function generateIntroductionPage() {
     
     // Scroll to result
     resultContainer.scrollIntoView({ behavior: 'smooth' });
-};
+}
 
 // Generate the HTML content for the introduction page
 function generateIntroductionHTML(data, courses) {
@@ -238,7 +238,7 @@ function generateIntroductionHTML(data, courses) {
             </ul>
         </div>
     `;
-};
+}
 
 // Format date for display
 function formatDate(dateString) {
@@ -248,7 +248,7 @@ function formatDate(dateString) {
         month: 'long', 
         day: 'numeric' 
     });
-};
+}
 
 // Add a new course row
 function addCourse() {
@@ -263,12 +263,12 @@ function addCourse() {
         <button type="button" class="delete-course" onclick="removeCourse(this)">Delete</button>
     `;
     container.appendChild(courseItem);
-};
+}
 
 // Remove a course row
 function removeCourse(button) {
     button.parentElement.remove();
-};
+}
 
 // Clear all form fields
 function clearForm() {
@@ -292,7 +292,7 @@ function clearForm() {
     
     // Hide result container
     document.getElementById('resultContainer').style.display = 'none';
-};
+}
 
 // Reset form to default values
 function resetToDefaults() {
@@ -304,14 +304,14 @@ function resetToDefaults() {
     document.querySelectorAll('.error-message').forEach((error) => {
         error.textContent = '';
     });
-};
+}
 
 // Reset form (called from result page)
 function resetForm() {
     clearForm();
     document.getElementById('resultContainer').style.display = 'none';
     document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
-};
+}
 
 // Handle image preview and validation
 document.addEventListener('DOMContentLoaded', function() {
