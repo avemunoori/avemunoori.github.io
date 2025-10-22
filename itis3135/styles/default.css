@@ -11,12 +11,34 @@ body {
 }
 
 /* Typography */
+:root {
+    --h1-font-size: 2.5em;
+    --h2-font-size: 1.8em;
+    --h3-font-size: 1.4em;
+}
+
+h1 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: var(--h1-font-size);
+}
+
 h2 {
     font-family: 'Georgia', 'Times New Roman', serif;
     color: #34495e;
     text-align: center;
     margin-bottom: 30px;
-    font-size: 1.8em;
+    font-size: var(--h2-font-size);
+}
+
+h3 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #2c3e50;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: var(--h3-font-size);
 }
 
 /* Links */
@@ -47,7 +69,6 @@ section {
 section h3 {
     margin-top: 0;
     margin-bottom: 20px;
-    color: #2c3e50;
 }
 
 section ul {
@@ -58,14 +79,6 @@ section ul {
 section li {
     margin-bottom: 15px;
     line-height: 1.6;
-}
-
-h3 {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    color: #2c3e50;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-size: 1.4em;
 }
 
 /* Layout */
@@ -122,6 +135,10 @@ p {
 
 /* Rule Overrides For Laptops / Small Screens */
 @media screen and (min-width: 981px) and (max-width: 1400px) {
+    :root {
+        --h2-font-size: 1.7em;
+    }
+    
     main {
         max-width: 1000px;
         padding: 35px;
@@ -131,14 +148,15 @@ p {
         width: 180px;
         height: 180px;
     }
-    
-    h2 {
-        font-size: 1.7em;
-    }
 }
 
 /* Rule Overrides For Tablet Devices */
 @media screen and (min-width: 601px) and (max-width: 980px) {
+    :root {
+        --h1-font-size: 2.2em;
+        --h2-font-size: 1.6em;
+    }
+    
     body {
         padding: 15px;
     }
@@ -146,14 +164,6 @@ p {
     main {
         padding: 30px;
         width: 95%;
-    }
-    
-    h1 {
-        font-size: 2.2em;
-    }
-    
-    h2 {
-        font-size: 1.6em;
     }
     
     .profile-image img {
@@ -168,6 +178,12 @@ p {
 
 /* Rule Overrides For Mobile Devices */
 @media screen and (min-width: 370px) and (max-width: 600px) {
+    :root {
+        --h1-font-size: 2em;
+        --h2-font-size: 1.4em;
+        --h3-font-size: 1.2em;
+    }
+    
     body {
         padding: 10px;
     }
@@ -177,17 +193,8 @@ p {
         width: 95%;
     }
     
-    h1 {
-        font-size: 2em;
-    }
-    
     h2 {
-        font-size: 1.4em;
         margin-bottom: 20px;
-    }
-    
-    h3 {
-        font-size: 1.2em;
     }
     
     .profile-image img {
